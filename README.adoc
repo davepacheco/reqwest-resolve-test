@@ -1,0 +1,8 @@
+:showtitle:
+:toc: left
+:icons: font
+
+= reqwest resolve example
+
+This crate just shows some of my confusion about the lifetimes in the `Resolve`
+trait.  See the comments in src/lib.rs for details.

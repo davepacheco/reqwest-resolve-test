@@ -1,0 +1,10 @@
+[package]
+name = "reqwest-resolve"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+futures = "0.3.28"
+hyper = "0.14.26"
+reqwest = "0.11.17"
+trust-dns-resolver = "0.22.0"
