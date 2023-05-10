@@ -101,7 +101,8 @@ impl MyResolve for MyCustomDnsResolver {
     }
 }
 
-// We'd like it to look like this, but it can't.
+// We'd like it to look like this, but it can't:
+//
 // impl reqwest::dns::Resolve for MyCustomDnsResolver {
 //     fn resolve(
 //         &self,
@@ -110,6 +111,17 @@ impl MyResolve for MyCustomDnsResolver {
 //         do_resolve(&self.resolver, name).boxed()
 //     }
 // }
+//
+// rustc reports:
+//
+// error: lifetime may not live long enough
+//   --> src/lib.rs:110:9
+//    |
+//107 |         &self,
+//    |         - let's call the lifetime of this reference `'1`
+//...
+//110 |         do_resolve(&self.resolver, name).boxed()
+//    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ returning this value requires that `'1` must outlive `'static`
 
 async fn do_resolve(
     resolver: &TokioAsyncResolver,
